@@ -17,12 +17,14 @@ function partitionBooksByBorrowedStatus(books) {
 
 
 function getBorrowersForBook(book, accounts) {
+  let result = [];
   let {borrows} = book;
-  return borrows.forEach(borrow=> {
+  borrows.forEach(borrow=> {
     let account = accounts.find(acc => acc.id === borrow.id);
     account['returned'] = borrow.returned;
     result.push(account);
-  }).slice(0,10);
+  });
+  return result.slice(0,10);
 }
 
 
